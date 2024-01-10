@@ -25,11 +25,16 @@ main{
 #cells-grid{
     display:flex;
     flex-wrap:wrap;
-    border:2px black solid;
     height:800px;
     width:800px;
 }
 
+#cells-grid .cell{
+    cursor: pointer;
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+    border:1px solid black;
+}
 /*Footer*/
 footer{
     height:100px;
