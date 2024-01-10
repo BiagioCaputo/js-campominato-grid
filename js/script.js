@@ -15,9 +15,10 @@ const totalCells = rows * cols;
 
 //Funzioni
 
-const createCell = () => {
+const createCell = (number) => {
     const newCell = document.createElement('div');
-    newCell.className = 'cell';
+    newCell.className = 'cell'; 
+    newCell.innerText = number; // stampo il numero all'interno
     return newCell;
 }
 
@@ -32,10 +33,10 @@ form.addEventListener('submit', function(event){
     event.preventDefault();
 
     //creo un ciclo for per ripetere la funzione tante volte quanto il totale delle celle indicato dall'utente
-    for(let i= 0; i < totalCells; i++){
+    for(let i = 1; i <= totalCells; i++){
         
-        //creo una nuova cella
-        const cell = createCell();
+        //creo una nuova cella con la i che corrisponde al numero ordinato
+        const cell = createCell(i);
 
         //aggiungo la nuova cella alla griglia
         grid.appendChild(cell);
