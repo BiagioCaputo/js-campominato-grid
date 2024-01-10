@@ -38,6 +38,13 @@ form.addEventListener('submit', function(event){
         //creo una nuova cella con la i che corrisponde al numero ordinato
         const cell = createCell(i);
 
+        //creo l'interazione al click
+        
+        cell.addEventListener('click', (e) => {
+            cell.classList.toggle('clicked');
+            console.log(i);
+        }) 
+
         //aggiungo la nuova cella alla griglia
         grid.appendChild(cell);
     }

@@ -38,6 +38,10 @@ main{
     justify-content: center;
     align-items: center;
 }
+
+.clicked{
+    background-color: skyblue;
+}
 /*Footer*/
 footer{
     height:100px;
