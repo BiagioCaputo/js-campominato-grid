@@ -1,0 +1,36 @@
+/*Header*/
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header button{
+    width: 100px;
+}
+
+header img{
+    max-width: 100px;
+}
+
+/*Main*/
+
+main{
+    background-color: #7FFFD4;
+    min-height: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#cells-grid{
+    display:flex;
+    flex-wrap:wrap;
+    border:2px black solid;
+    height:800px;
+    width:800px;
+}
+
+/*Footer*/
+footer{
+    height:100px;
+}
