@@ -1,52 +1,87 @@
-console.log("JS OK")
 
 //recupero gli elementi 
-
-const grid = document.getElementById("cells-grid");
+const grid = document.getElementById("grid");
 const form = document.querySelector("form");
-
-//grandezza grid 
-
-const rows = 10;
-
-const cols = 10;
-
-const totalCells = rows * cols;
-
-//Funzioni
-
-const createCell = (number) => {
-    const newCell = document.createElement('div');
-    newCell.className = 'cell'; 
-    newCell.innerText = number; // stampo il numero all'interno
-    return newCell;
-}
+const dimension = document.getElementById("difficulty");
+const button = document.querySelector("button")
 
 
 
-//Svolgimento
+const startGame = event => {
 
-//metto in ascolto il form
-form.addEventListener('submit', function(event){
-
-    //impedisco il comportamento di default
     event.preventDefault();
+    
+    /* *********Funzioni interne al gioco********** */
+    
+    //funzione per creare una cella
+    const createCell = (number, cols) => {
+        const newCell = document.createElement('div');
+        newCell.className = 'cell'; 
+        newCell.innerText = number; // stampo il numero all'interno
+        return newCell;
+    }
+    
+    
 
-    //creo un ciclo for per ripetere la funzione tante volte quanto il totale delle celle indicato dall'utente
-    for(let i = 1; i <= totalCells; i++){
-        
-        //creo una nuova cella con la i che corrisponde al numero ordinato
-        const cell = createCell(i);
+    /*************** Effettivo svolgimento  ******************* */
 
-        //creo l'interazione al click
-        
-        cell.addEventListener('click', (e) => {
-            cell.classList.toggle('clicked');
-            console.log(i);
-        }) 
+    //Cambio il testo del bottone
+    button.innerText = "Ricomincia";
 
-        //aggiungo la nuova cella alla griglia
-        grid.appendChild(cell);
+        //Svuoto la griglia 
+    grid.innerText = "";
+
+    //recupero il valore della tendina
+
+    const level = dimension.value;
+
+    grid.classList.add(level);
+
+    
+    let rows= 10;
+
+    let cols = 10;
+
+    switch(level){
+        case 'hard':
+        rows = 7;
+        cols = 7;
+        break;
+    
+
+    case 'normal':
+        rows = 9;
+        cols = 9;
+        break;
     }
 
-})
+     //calcolo il totale delle celle
+     const totalCells = parseInt(rows) * parseInt(cols);
+     console.log(totalCells);
+        
+
+        //creo un ciclo for per ripetere la funzione tante volte quanto il totale delle celle indicato dall'utente
+    for(let i = 1; i <= totalCells; i++){
+            
+            //creo una nuova cella con la i che corrisponde al numero ordinato
+        const cell = createCell(i);
+
+            //creo l'interazione al click
+        cell.addEventListener('click', () => {
+                
+            cell.classList.toggle('clicked');
+
+            if(cell.classList.contains('clicked')) return;
+                console.log(i);
+            }
+            );
+
+            //aggiungo la nuova cella alla griglia
+        grid.appendChild(cell);
+        }
+
+
+    }
+
+//metto in ascolto il form
+form.addEventListener('submit', startGame );
